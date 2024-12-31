@@ -17,13 +17,13 @@ function ViewBookings() {
       try {
         // Retrieve user information from localStorage
         const storedUser = {
-          userId : JSON.parse(localStorage.getItem("user")).id  
+          userId: JSON.parse(localStorage.getItem("user")).id
         }
-        
+
         console.log(storedUser);
 
         // Make POST request to fetch user-specific trips
-        const response = await axios.post('http://localhost:5000/trip/getTripUser', storedUser);
+        const response = await axios.post('http://13.250.101.135:5000/trip/getTripUser', storedUser);
 
         // Assuming the backend sends the bookings data in response.data.trips
         if (response.data.trips) {

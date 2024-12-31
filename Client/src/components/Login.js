@@ -26,16 +26,16 @@ const Login = () => {
                 password: password
             }
 
-            axios.post('http://localhost:5000/user/login', data)
-            .then(response => {
-                localStorage.setItem('user', JSON.stringify(response.data.user));   
-                setUser(response.data.user);
-                navigate("/")
+            axios.post('http://13.250.101.135:5000/user/login', data)
+                .then(response => {
+                    localStorage.setItem('user', JSON.stringify(response.data.user));
+                    setUser(response.data.user);
+                    navigate("/")
 
-            })
-            .catch(error => console.error('Error adding user:', error));
+                })
+                .catch(error => console.error('Error adding user:', error));
             console.log('login:', { username, password });
-        
+
 
 
 
@@ -46,14 +46,14 @@ const Login = () => {
                 username: username,
                 password: password
             }
-            axios.post('http://localhost:5000/user/addUser', data)
-            .then(response => {
-              
-                // alert("Registered Successfully")
-                window.location.reload();
+            axios.post('http://13.250.101.135:5000/user/addUser', data)
+                .then(response => {
 
-            })
-            .catch(error => console.error('Error adding user:', error));
+                    // alert("Registered Successfully")
+                    window.location.reload();
+
+                })
+                .catch(error => console.error('Error adding user:', error));
             console.log('Register:', { username, password });
         }
     };
@@ -80,7 +80,7 @@ const Login = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                   
+
                     <TextField
                         label="Password"
                         type="password"

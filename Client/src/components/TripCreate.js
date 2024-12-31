@@ -85,7 +85,7 @@ function TripCreate() {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/bus/'); // Adjust the endpoint as necessary
+        const response = await axios.get('http://13.250.101.135:5000/bus/'); // Adjust the endpoint as necessary
         setBuses(response.data.buses || []);
         setLoadingBuses(false);
       } catch (error) {

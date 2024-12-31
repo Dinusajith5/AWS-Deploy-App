@@ -51,7 +51,7 @@ function TripManagement() {
   useEffect(() => {
     const fetchTrips = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/bus/');
+        const response = await axios.get('http://13.250.101.135:5000/bus/');
         setTrips(response.data.buses);
         setLoading(false);
       } catch (err) {
@@ -118,9 +118,9 @@ function TripManagement() {
     try {
       // Prepare data to send
 
-      console.log('selectedTrip',selectedTrip);
+      console.log('selectedTrip', selectedTrip);
 
-      console.log('user',JSON.parse(localStorage.getItem("user")).id);
+      console.log('user', JSON.parse(localStorage.getItem("user")).id);
       const bookingData = {
         busno: selectedTrip.busno, // Ensure using the correct ID field
         booked: seatsToBook,
@@ -134,11 +134,11 @@ function TripManagement() {
       }
 
 
-     
+
 
       // Send PUT request to addtrip API
-      const response = await axios.post('http://localhost:5000/trip/addTrip', bookingData);
-      const resBookBus = await axios.post(`http://localhost:5000/bus/book`, bookBus);
+      const response = await axios.post('http://13.250.101.135:5000/trip/addTrip', bookingData);
+      const resBookBus = await axios.post(`http://13.250.101.135:5000/bus/book`, bookBus);
 
       // Handle success
       setBookingSuccess('Seats booked successfully!');

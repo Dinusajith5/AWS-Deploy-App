@@ -22,22 +22,22 @@ function BusManagement() {
       { lati: 6.911932, longi: 79.858390 },
       { lati: 6.839813, longi: 79.992739 }
     ];
-  
+
     // Randomly select a coordinate from the array
     const randomIndex = Math.floor(Math.random() * coordinates.length);
     const selectedCoordinate = coordinates[randomIndex];
-  
+
     // Add selected latitude and longitude to the bus object
     bus.lati = selectedCoordinate.lati;
     bus.longi = selectedCoordinate.longi;
-  
+
     // Now pass the updated bus object to the Map page
     navigation('/Map', { state: { props: bus } });
   }
 
   useEffect(() => {
-    axios.get('http://localhost:5000/bus/')
-      .then(response => 
+    axios.get('http://13.250.101.135:5000/bus/')
+      .then(response =>
         // console.log(response.data.buses)
         setBuses(response.data.buses)
       )
@@ -45,8 +45,8 @@ function BusManagement() {
   }, []);
 
   const getallBuses = () => {
-    axios.get('http://localhost:5000/bus/')
-      .then(response => 
+    axios.get('http://13.250.101.135:5000/bus/')
+      .then(response =>
         // console.log(response.data.buses)
         setBuses(response.data.buses)
       )
@@ -61,7 +61,7 @@ function BusManagement() {
   };
 
   const handleSubmit = () => {
-    axios.post('http://localhost:5000/bus/addBus', newBus)
+    axios.post('http://13.250.101.135:5000/bus/addBus', newBus)
       .then(response => {
         setBuses([...buses, response.data]);
         handleClose();
@@ -71,15 +71,15 @@ function BusManagement() {
   };
 
   return (
-    <div style={{margin : '20px'}}>
+    <div style={{ margin: '20px' }}>
       {
         JSON.parse(localStorage.getItem("user")).role === 'admin' ? (
 
           <Button style={{ float: 'right', margin: '10px' }} onClick={handleOpen} variant='outlined'>Add New Bus</Button>
-        ) : 
-        <>
-        
-        </>
+        ) :
+          <>
+
+          </>
       }
       <TableContainer component={Paper} >
         <Table>
@@ -99,7 +99,7 @@ function BusManagement() {
                 <TableCell>{bus.owner}</TableCell>
                 <TableCell>{bus.routeno}</TableCell>
                 <TableCell>{bus.seatingcap}</TableCell>
-                <TableCell><Button variant='contained' onClick={() => {toMap(bus)}}>View in Map</Button></TableCell>
+                <TableCell><Button variant='contained' onClick={() => { toMap(bus) }}>View in Map</Button></TableCell>
               </TableRow>
             ))}
           </TableBody>
